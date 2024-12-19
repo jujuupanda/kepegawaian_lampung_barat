@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'service_locator.dart';
 
 import 'app.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    ScreenUtilInit(
+      designSize: Size(360, 690),
+      minTextAdapt: true,
+      builder: (context, child) => MyApp(),
+    ),
+  );
   serviceLocator();
 }
 

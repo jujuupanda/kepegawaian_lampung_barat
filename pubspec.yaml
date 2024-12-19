@@ -24,6 +24,7 @@ dependencies:
   dart_jsonwebtoken: ^2.14.2
   cupertino_icons: ^1.0.8
   package_info_plus: ^8.1.2
+  flutter_screenutil: ^5.9.3
 dev_dependencies:
   flutter_test:
     sdk: flutter
