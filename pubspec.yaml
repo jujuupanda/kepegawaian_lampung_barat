@@ -1,13 +1,9 @@
 name: kepegawaian_lampung_barat
 description: "Aplikasi Kepegawaian Kominfo Lampung Barat"
-
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
-
+publish_to: 'none'
 version: 1.0.0+1
-
 environment:
   sdk: ^3.6.0
-
 dependencies:
   flutter:
     sdk: flutter
@@ -19,7 +15,7 @@ dependencies:
   http: ^1.2.2
   shared_preferences: ^2.3.2
   mockito: ^5.4.4
-  intl: ^0.19.0
+  intl: ^0.20.1
   go_router: ^14.4.1
   google_fonts: ^6.2.1
   crypto: ^3.0.6
@@ -27,19 +23,14 @@ dependencies:
   gap: ^3.0.1
   dart_jsonwebtoken: ^2.14.2
   cupertino_icons: ^1.0.8
-
+  package_info_plus: ^8.1.2
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^5.0.0
-
 flutter:
   uses-material-design: true
   assets:
     - assets/fonts/
-    - assets/fonts/fonts.dart
     - assets/icons/
-    - assets/icons/icons.dart
     - assets/images/
-    - assets/images/images.dart
-

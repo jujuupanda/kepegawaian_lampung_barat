@@ -19,5 +19,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-// Add Bloc provider above gesture detector
