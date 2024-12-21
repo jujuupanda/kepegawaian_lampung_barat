@@ -1,5 +1,6 @@
 part of 'route_app.dart';
 
 class RouteName {
-  final splashScreen = "splashScreen";
+  static final splashScreen = "splashScreen";
+  static final loginScreen = "loginScreen";
 }

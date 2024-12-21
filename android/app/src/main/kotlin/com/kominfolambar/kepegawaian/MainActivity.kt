@@ -1,4 +1,4 @@
-package com.kominfolambar.kepegawaianlambar.kepegawaian_lampung_barat
+package com.kominfolambar.kepegawaian
 
 import io.flutter.embedding.android.FlutterActivity
 
