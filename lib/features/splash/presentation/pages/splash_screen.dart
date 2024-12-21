@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:package_info_plus/package_info_plus.dart';
-import '../../../login/data/data_sources/auth_data_source.dart';
-import '../../../login/domain/use_cases/login_use_case.dart';
+
+import '../../../../core/routes/route_app.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -12,20 +12,20 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-  /// TODO: harus menampilkan peringatan jika versi tidak sesuai
-  Future<void> checkAppVersion() async {
-    final appInfo = await PackageInfo.fromPlatform();
-    if (appInfo.version == "1.0.0") {
-      print("Tidak perlu diperbarui");
-    } else {
-      print("Harus diperbarui");
-    }
+  Future<void> splashTime() async {
+    Future.delayed(
+      const Duration(seconds: 1, microseconds: 500),
+      () {
+        /// TODO: BLoC is login checker
+        if (mounted) GoRouter.of(context).goNamed(RouteName.loginScreen);
+      },
+    );
   }
 
   @override
   void initState() {
     super.initState();
-    checkAppVersion();
+    splashTime();
   }
 
   @override

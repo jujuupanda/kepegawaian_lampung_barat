@@ -2,6 +2,7 @@
 
 import 'package:go_router/go_router.dart';
 
+import '../../features/login/presentation/pages/login_screen.dart';
 import '../../features/splash/presentation/pages/splash_screen.dart';
 
 part 'route_name.dart';
@@ -12,9 +13,16 @@ final GoRouter routerApp = GoRouter(
     /// Route without parent
     GoRoute(
       path: '/',
-      name: RouteName().splashScreen,
+      name: RouteName.splashScreen,
       builder: (context, state) {
         return const SplashScreen();
+      },
+    ),
+    GoRoute(
+      path: '/loginScreen',
+      name: RouteName.loginScreen,
+      builder: (context, state) {
+        return const LoginScreen();
       },
     ),
     /// Route with parent
