@@ -15,57 +15,97 @@ class TextStyleHelper {
     );
   }
 
-  static TextStyle header1() {
+  static TextStyle header1({
+    Color? color,
+    TextDecoration? decoration,
+  }) {
     return _baseTextStyle(
       fontSize: 32.sp,
       fontWeight: FontWeight.w600,
+      color: color,
+      decoration: decoration,
     );
   }
 
-  static TextStyle header2() {
+  static TextStyle header2({
+    Color? color,
+    TextDecoration? decoration,
+  }) {
     return _baseTextStyle(
       fontSize: 24.sp,
       fontWeight: FontWeight.w600,
+      color: color,
+      decoration: decoration,
     );
   }
 
-  static TextStyle subHeader1() {
+  static TextStyle subHeader1({
+    Color? color,
+    TextDecoration? decoration,
+  }) {
     return _baseTextStyle(
       fontSize: 16.sp,
       fontWeight: FontWeight.w500,
+      color: color,
+      decoration: decoration,
     );
   }
 
-  static TextStyle subHeader2() {
+  static TextStyle subHeader2({
+    Color? color,
+    TextDecoration? decoration,
+  }) {
     return _baseTextStyle(
       fontSize: 14.sp,
       fontWeight: FontWeight.w500,
+      color: color,
+      decoration: decoration,
     );
   }
 
-  static TextStyle body1() {
+  static TextStyle body1({
+    Color? color,
+    TextDecoration? decoration,
+  }) {
     return _baseTextStyle(
       fontSize: 16.sp,
       fontWeight: FontWeight.w600,
+      color: color,
+      decoration: decoration,
     );
   }
 
-  static TextStyle body2() {
+  static TextStyle body2({
+    Color? color,
+    TextDecoration? decoration,
+  }) {
     return _baseTextStyle(
       fontSize: 14.sp,
       fontWeight: FontWeight.w600,
+      color: color,
+      decoration: decoration,
     );
   }
 
-  static TextStyle caption() {
+  static TextStyle caption({
+    Color? color,
+    TextDecoration? decoration,
+  }) {
     return _baseTextStyle(
       fontSize: 12.sp,
+      color: color,
+      decoration: decoration,
     );
   }
 
-  static TextStyle overline() {
+  static TextStyle overline({
+    Color? color,
+    TextDecoration? decoration,
+  }) {
     return _baseTextStyle(
       fontSize: 10.sp,
+      color: color,
+      decoration: decoration,
     );
   }
 

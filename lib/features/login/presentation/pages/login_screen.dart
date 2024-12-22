@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../core/services/services.dart';
 import '../../../../core/utils/utils.dart';
 import '../../domain/use_cases/login_use_case.dart';
 import '../manager/auth_bloc.dart';
@@ -37,48 +36,65 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return BlocListener<AuthBloc, AuthState>(
       listener: (context, state) {},
-      child: Scaffold(
-        body: Center(
-          child: Column(
-            spacing: 10.h,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                "Ini Header LOGIN",
-                style: TextStyleHelper.header1(),
-              ),
-              TextFormField(
-                controller: usernameC,
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                ),
-              ),
-              TextFormField(
-                controller: passwordC,
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                ),
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  _Function.loginButton(
-                    context,
-                    LoginParam(
-                      username: usernameC.text,
-                      password: passwordC.text,
+      child: Stack(
+        children: [
+          Scaffold(
+            body: Center(
+              child: Column(
+                spacing: 10.h,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "Ini Header LOGIN",
+                    style: TextStyleHelper.header1(),
+                  ),
+                  TextFormField(
+                    controller: usernameC,
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
                     ),
-                  );
-                },
-                child: Text("Masuk"),
+                  ),
+                  TextFormField(
+                    controller: passwordC,
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                    ),
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      _Function.loginButton(
+                        context,
+                        LoginParam(
+                          username: usernameC.text,
+                          password: passwordC.text,
+                        ),
+                      );
+                    },
+                    child: Text("Masuk"),
+                  ),
+                  CommonWidget.baseFormField(
+                    controller: TextEditingController(),
+                    identifiedPage: "login_page",
+                  ),
+                  BlocBuilder<AuthBloc, AuthState>(
+                    builder: (context, state) {
+                      return Text(state.toString());
+                    },
+                  )
+                ],
               ),
-              BlocBuilder<AuthBloc, AuthState>(
-                builder: (context, state) {
-                  return Text(state.toString());
-                },
-              )
-            ],
+            ),
           ),
-        ),
+          BlocBuilder<AuthBloc, AuthState>(
+            builder: (context, state) {
+              if (state is AuthLoading) {
+                return CommonWidget.loadingWaveDots(context);
+              } else {
+                return CommonWidget.emptyWidget();
+              }
+            },
+          )
+        ],
       ),
     );
   }
