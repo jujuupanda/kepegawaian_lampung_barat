@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 
-import '../../../../core/utils/failure_helper.dart';
+import '../../../../core/utils/utils.dart';
 import '../../domain/entities/auth_entity.dart';
 import '../../domain/use_cases/login_use_case.dart';
 

@@ -1,4 +1,5 @@
-import '../error/failure.dart';
+part of 'utils.dart';
+
 
 class FailureHelper {
   static String failure(Failure failure) {
