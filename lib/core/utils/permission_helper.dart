@@ -1,6 +1,5 @@
-import 'package:permission_handler/permission_handler.dart';
+part of 'utils.dart';
 
-import '../services/services.dart';
 
 class PermissionHelper {
   static void location() async {

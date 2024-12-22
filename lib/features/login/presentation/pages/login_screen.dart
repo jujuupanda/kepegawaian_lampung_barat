@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/services/services.dart';
+import '../../../../core/utils/utils.dart';
 import '../../domain/use_cases/login_use_case.dart';
 import '../manager/auth_bloc.dart';
 
@@ -20,7 +21,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   void initState() {
     super.initState();
-    SafeDeviceService.checkAppVersion();
+    _Function.isAppLatest(context);
     usernameC = TextEditingController();
     passwordC = TextEditingController();
   }
@@ -35,15 +36,17 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return BlocListener<AuthBloc, AuthState>(
-      listener: (context, state) {
-        print("ini screen $state");
-      },
+      listener: (context, state) {},
       child: Scaffold(
         body: Center(
           child: Column(
             spacing: 10.h,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              Text(
+                "Ini Header LOGIN",
+                style: TextStyleHelper.header1(),
+              ),
               TextFormField(
                 controller: usernameC,
                 decoration: InputDecoration(
@@ -67,6 +70,11 @@ class _LoginScreenState extends State<LoginScreen> {
                   );
                 },
                 child: Text("Masuk"),
+              ),
+              BlocBuilder<AuthBloc, AuthState>(
+                builder: (context, state) {
+                  return Text(state.toString());
+                },
               )
             ],
           ),
@@ -77,9 +85,31 @@ class _LoginScreenState extends State<LoginScreen> {
 }
 
 class _Function {
-
+  static void isAppLatest(BuildContext context) async {
+    if (await AppDeviceHelper.isAppLatest() == false) {
+      if (context.mounted) {
+        CommonWidget.dialogBox(
+          context,
+          DialogModel(
+            title: "Aplikasi kadaluarsa",
+            content:
+                "Terdapat aplikasi versi terbaru. Silahkan update aplikasi ke versi terbaru.",
+          ),
+        );
+      }
+    }
+  }
 
   static void loginButton(BuildContext context, LoginParam params) async {
+    if (await AppDeviceHelper.isDeviceSafe()) {
+      if (context.mounted) {
+        BlocProvider.of<AuthBloc>(context).add(LoginEvent(params));
+      }
+    } else {
+      if (context.mounted) {
+        CommonWidget.secureWarning(context);
+      }
+    }
     // BlocProvider.of<AuthBloc>(context).add(LoginEvent(params));
     // final currentLocation = await LocationService.currentLocation();
     // final deviceSafe = await SafeDeviceService.checkDevice();
