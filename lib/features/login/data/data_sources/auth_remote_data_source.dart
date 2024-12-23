@@ -3,7 +3,7 @@ part of 'auth_data_source.dart';
 class AuthRemoteDataSource extends AuthDataSource {
   @override
   Future<Either<Failure, AuthModel>> login(LoginParam params) async {
-    const endpoint = "api/login";
+    const endpoint = "/api/v1/auth/login";
     final data = {
       "email": params.username,
       "password": params.password,

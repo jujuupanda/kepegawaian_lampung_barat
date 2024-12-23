@@ -45,7 +45,7 @@ class _TokenChecker {
 }
 
 class ApiService {
-  static const _baseUrl = "https://reqres.in/";
+  static const _baseUrl = "https://api.escuelajs.co";
 
   ///General method for http request
   static Future<Either<Failure, Map<String, dynamic>>> requestHandler(

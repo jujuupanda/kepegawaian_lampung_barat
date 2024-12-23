@@ -3,7 +3,7 @@ part of 'utils.dart';
 class CommonWidget {
   static void dialogBox(
     BuildContext context,
-    DialogModel dialogModel,
+    DialogContentModel dialogModel,
   ) {
     showDialog(
       context: context,
@@ -37,21 +37,67 @@ class CommonWidget {
       ),
     );
   }
-}
 
-class DialogModel {
-  final String title;
-  final String content;
+  static Widget loadingWaveDots(BuildContext context) {
+    return Container(
+      height: MediaQuery.of(context).size.height,
+      width: MediaQuery.of(context).size.width,
+      decoration: BoxDecoration(color: ColorHelper.grayWithOpacity),
+      child: Center(
+        child: LoadingAnimationWidget.waveDots(
+          color: ColorHelper.black,
+          size: 50.sp,
+        ),
+      ),
+    );
+  }
 
-  const DialogModel({
-    required this.title,
-    required this.content,
-  });
+  static Widget loadingShimmer(Widget child) {
+    return Shimmer.fromColors(
+      baseColor: Colors.grey.shade300,
+      highlightColor: Colors.grey.shade100,
+      enabled: true,
+      child: Container(
+        decoration: BoxDecoration(),
+        child: child,
+      ),
+    );
+  }
 
-  DialogModel copyWith({String? title, String? content}) {
-    return DialogModel(
-      title: title ?? this.title,
-      content: content ?? this.content,
+  static Widget emptyWidget() {
+    return SizedBox();
+  }
+
+  static Widget textFormField({
+    required TextEditingController controller,
+    required String identifiedAs,
+    required String identifiedPage,
+    String? hint,
+    bool? isRequired,
+    bool? readOnly,
+    AutovalidateMode? autoValidationMode,
+    TextInputType? textInputType,
+    TextInputAction? textInputAction,
+    int? minLines,
+    int? maxLines,
+    IconButtonModel? prefixIcon,
+    IconButtonModel? suffixIcon,
+  }) {
+    return CustomTextFormField(
+      controller: controller,
+      identifiedPage: identifiedPage,
+      identifiedAs: identifiedAs,
+      hint: hint,
+      isRequired: isRequired,
+      readOnly: readOnly,
+      autoValidateMode: autoValidationMode,
+      textInputType: textInputType,
+      textInputAction: textInputAction,
+      minLines: minLines,
+      maxLines: maxLines,
+      prefixIcon: prefixIcon,
+      suffixIcon: suffixIcon,
     );
   }
 }
+
