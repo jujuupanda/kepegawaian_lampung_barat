@@ -48,17 +48,19 @@ class _LoginScreenState extends State<LoginScreen> {
                     "Ini Header LOGIN",
                     style: TextStyleHelper.header1(),
                   ),
-                  TextFormField(
+                  CommonWidget.textFormField(
                     controller: usernameC,
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                    ),
+                    identifiedPage: "login_page",
+                    identifiedAs: "email",
+                    hint: "Email",
+                    prefixIcon: IconButtonModel(iconData: Icons.email)
                   ),
-                  TextFormField(
+                  CommonWidget.textFormField(
                     controller: passwordC,
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                    ),
+                    identifiedPage: "login_page",
+                    identifiedAs: "password",
+                    hint: "Password",
+                    prefixIcon: IconButtonModel(iconData: Icons.lock)
                   ),
                   ElevatedButton(
                     onPressed: () {
@@ -71,10 +73,6 @@ class _LoginScreenState extends State<LoginScreen> {
                       );
                     },
                     child: Text("Masuk"),
-                  ),
-                  CommonWidget.baseFormField(
-                    controller: TextEditingController(),
-                    identifiedPage: "login_page",
                   ),
                   BlocBuilder<AuthBloc, AuthState>(
                     builder: (context, state) {
@@ -106,7 +104,7 @@ class _Function {
       if (context.mounted) {
         CommonWidget.dialogBox(
           context,
-          DialogModel(
+          DialogContentModel(
             title: "Aplikasi kadaluarsa",
             content:
                 "Terdapat aplikasi versi terbaru. Silahkan update aplikasi ke versi terbaru.",

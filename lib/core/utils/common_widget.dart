@@ -3,7 +3,7 @@ part of 'utils.dart';
 class CommonWidget {
   static void dialogBox(
     BuildContext context,
-    DialogModel dialogModel,
+    DialogContentModel dialogModel,
   ) {
     showDialog(
       context: context,
@@ -68,90 +68,36 @@ class CommonWidget {
     return SizedBox();
   }
 
-  static Widget baseFormField({
+  static Widget textFormField({
     required TextEditingController controller,
+    required String identifiedAs,
     required String identifiedPage,
+    String? hint,
+    bool? isRequired,
+    bool? readOnly,
+    AutovalidateMode? autoValidationMode,
+    TextInputType? textInputType,
+    TextInputAction? textInputAction,
+    int? minLines,
+    int? maxLines,
+    IconButtonModel? prefixIcon,
+    IconButtonModel? suffixIcon,
   }) {
     return CustomTextFormField(
       controller: controller,
       identifiedPage: identifiedPage,
+      identifiedAs: identifiedAs,
+      hint: hint,
+      isRequired: isRequired,
+      readOnly: readOnly,
+      autoValidateMode: autoValidationMode,
+      textInputType: textInputType,
+      textInputAction: textInputAction,
+      minLines: minLines,
+      maxLines: maxLines,
+      prefixIcon: prefixIcon,
+      suffixIcon: suffixIcon,
     );
   }
 }
 
-class CustomTextFormField extends StatefulWidget {
-  const CustomTextFormField(
-      {super.key, required this.controller, required this.identifiedPage});
-
-  final TextEditingController controller;
-  final String identifiedPage;
-
-  @override
-  State<CustomTextFormField> createState() => _CustomTextFormFieldState();
-}
-
-class _CustomTextFormFieldState extends State<CustomTextFormField> {
-  @override
-  Widget build(BuildContext context) {
-    return TextFormField(
-      controller: widget.controller,
-      decoration: InputDecoration(
-        border: OutlineInputBorder(),
-        hintText: "ini helper",
-        hintMaxLines: 1,
-        hintStyle: TextStyleHelper.caption(),
-        errorMaxLines: 1,
-        errorStyle: TextStyleHelper.caption(color: ColorHelper.red),
-      ),
-      readOnly: readOnly(),
-      validator: validator(),
-      inputFormatters: inputFormatters(),
-      keyboardType: keyboardType(),
-      textInputAction: textInputAction(),
-      minLines: minLines(),
-      maxLines: maxLines(),
-      style: TextStyleHelper.caption(),
-    );
-  }
-
-  readOnly() {}
-
-  validator() {
-    return null;
-  }
-
-  keyboardType() {
-    return TextInputType.none;
-  }
-
-  inputFormatters() {
-    return [];
-  }
-
-  textInputAction() {}
-
-  minLines() {
-    return 1;
-  }
-
-  maxLines() {
-    return 1;
-  }
-}
-
-class DialogModel {
-  final String title;
-  final String content;
-
-  const DialogModel({
-    required this.title,
-    required this.content,
-  });
-
-  DialogModel copyWith({String? title, String? content}) {
-    return DialogModel(
-      title: title ?? this.title,
-      content: content ?? this.content,
-    );
-  }
-}
