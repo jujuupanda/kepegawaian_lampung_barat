@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:gap/gap.dart';
 
+import '../../../../core/services/services.dart';
 import '../../../../core/utils/utils.dart';
 import '../../domain/use_cases/login_use_case.dart';
 import '../manager/auth_bloc.dart';
@@ -39,65 +41,63 @@ class _LoginScreenState extends State<LoginScreen> {
       child: Stack(
         children: [
           Scaffold(
-            body: Center(
+            body: SingleChildScrollView(
+              scrollDirection: Axis.vertical,
+              physics: AlwaysScrollableScrollPhysics(),
               child: Column(
                 spacing: 10.h,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Column(
-                    spacing: 10.h,
-                    children: [
-                      Text("Save Data"),
-                      SingleChildScrollView(
-                        scrollDirection: Axis.horizontal,
-                        child: Row(
-                          spacing: 4.w,
-                          children: [
-                            ElevatedButton(
-                              onPressed: () async {
-                                await SecureStorageHelper.write(
-                                  key: "username",
-                                  value: "julio",
-                                );
-                                await SecureStorageHelper.write(
-                                  key: "password",
-                                  value: "1234",
-                                );
-                              },
-                              child: Text("Create"),
-                            ),
-                            ElevatedButton(
-                              onPressed: () async {
-                                final a = await SecureStorageHelper.read(
-                                    key: "username");
-                                print(a);
-                              },
-                              child: Text("Read"),
-                            ),
-                            ElevatedButton(
-                              onPressed: () async {
-                                final a = await SecureStorageHelper.readAll();
-                              print(a);
-                                },
-                              child: Text("Read All"),
-                            ),
-                            ElevatedButton(
-                              onPressed: () async {
-                                await SecureStorageHelper.delete(
-                                    key: "password");
-                              },
-                              child: Text("Delete"),
-                            ),
-                            ElevatedButton(
-                              onPressed: () async {
-                                await SecureStorageHelper.deleteAll();
-                              },
-                              child: Text("DeleteAll"),
-                            ),
-                          ],
+                  Gap(50.h),
+                  Text("Save Data"),
+                  SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      spacing: 4.w,
+                      children: [
+                        ElevatedButton(
+                          onPressed: () async {
+                            await SecureStorageHelper.write(
+                              key: "username",
+                              value: "julio",
+                            );
+                            await SecureStorageHelper.write(
+                              key: "password",
+                              value: "1234",
+                            );
+                          },
+                          child: Text("Create"),
                         ),
-                      ),
-                    ],
+                        ElevatedButton(
+                          onPressed: () async {
+                            final a = await SecureStorageHelper.read(
+                                key: "username");
+                            print(a);
+                          },
+                          child: Text("Read"),
+                        ),
+                        ElevatedButton(
+                          onPressed: () async {
+                            final a = await SecureStorageHelper.readAll();
+                            print(a);
+                          },
+                          child: Text("Read All"),
+                        ),
+                        ElevatedButton(
+                          onPressed: () async {
+                            await SecureStorageHelper.delete(
+                                key: "password");
+                          },
+                          child: Text("Delete"),
+                        ),
+                        ElevatedButton(
+                          onPressed: () async {
+                            await SecureStorageHelper.deleteAll();
+                          },
+                          child: Text("DeleteAll"),
+                        ),
+                      ],
+                    ),
                   ),
                   Text(
                     "Ini Header LOGIN",
@@ -137,6 +137,24 @@ class _LoginScreenState extends State<LoginScreen> {
                       await LocationHelper.locationChecker("primary");
                     },
                     child: Text("Location Checker"),
+                  ),
+                  ElevatedButton(
+                    onPressed: () async {
+                      await NotificationService.showNotification();
+                    },
+                    child: Text("Notification"),
+                  ),
+                  ElevatedButton(
+                    onPressed: () async {
+                      await NotificationService.scheduleNotification();
+                    },
+                    child: Text("Notification Schedule"),
+                  ),
+                  ElevatedButton(
+                    onPressed: () async {
+                      await CameraHelper.openCamera();
+                    },
+                    child: Text("Open Camera"),
                   ),
                 ],
               ),
