@@ -44,24 +44,77 @@ class _LoginScreenState extends State<LoginScreen> {
                 spacing: 10.h,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  Column(
+                    spacing: 10.h,
+                    children: [
+                      Text("Save Data"),
+                      SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: Row(
+                          spacing: 4.w,
+                          children: [
+                            ElevatedButton(
+                              onPressed: () async {
+                                await SecureStorageHelper.write(
+                                  key: "username",
+                                  value: "julio",
+                                );
+                                await SecureStorageHelper.write(
+                                  key: "password",
+                                  value: "1234",
+                                );
+                              },
+                              child: Text("Create"),
+                            ),
+                            ElevatedButton(
+                              onPressed: () async {
+                                final a = await SecureStorageHelper.read(
+                                    key: "username");
+                                print(a);
+                              },
+                              child: Text("Read"),
+                            ),
+                            ElevatedButton(
+                              onPressed: () async {
+                                final a = await SecureStorageHelper.readAll();
+                              print(a);
+                                },
+                              child: Text("Read All"),
+                            ),
+                            ElevatedButton(
+                              onPressed: () async {
+                                await SecureStorageHelper.delete(
+                                    key: "password");
+                              },
+                              child: Text("Delete"),
+                            ),
+                            ElevatedButton(
+                              onPressed: () async {
+                                await SecureStorageHelper.deleteAll();
+                              },
+                              child: Text("DeleteAll"),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
                   Text(
                     "Ini Header LOGIN",
-                    style: TextStyleHelper.header1(),
+                    style: TextStyleHelper.header2(),
                   ),
                   CommonWidget.textFormField(
-                    controller: usernameC,
-                    identifiedPage: "login_page",
-                    identifiedAs: "email",
-                    hint: "Email",
-                    prefixIcon: IconButtonModel(iconData: Icons.email)
-                  ),
+                      controller: usernameC,
+                      identifiedPage: "login_page",
+                      identifiedAs: "email",
+                      hint: "Email",
+                      prefixIcon: IconButtonModel(iconData: Icons.email)),
                   CommonWidget.textFormField(
-                    controller: passwordC,
-                    identifiedPage: "login_page",
-                    identifiedAs: "password",
-                    hint: "Password",
-                    prefixIcon: IconButtonModel(iconData: Icons.lock)
-                  ),
+                      controller: passwordC,
+                      identifiedPage: "login_page",
+                      identifiedAs: "password",
+                      hint: "Password",
+                      prefixIcon: IconButtonModel(iconData: Icons.lock)),
                   ElevatedButton(
                     onPressed: () {
                       _Function.loginButton(
@@ -78,7 +131,13 @@ class _LoginScreenState extends State<LoginScreen> {
                     builder: (context, state) {
                       return Text(state.toString());
                     },
-                  )
+                  ),
+                  ElevatedButton(
+                    onPressed: () async {
+                      await LocationHelper.locationChecker("primary");
+                    },
+                    child: Text("Location Checker"),
+                  ),
                 ],
               ),
             ),

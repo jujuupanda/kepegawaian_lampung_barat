@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
@@ -22,3 +23,4 @@ part 'permission_helper.dart';
 part 'text_style_helper.dart';
 part 'custom_text_form_field.dart';
 part 'common_model.dart';
+part 'secure_storage_helper.dart';

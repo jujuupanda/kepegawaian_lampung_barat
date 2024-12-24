@@ -13,10 +13,4 @@ class PermissionHandlerService {
     final result = await permission.request();
     return result.isGranted;
   }
-
-  static Future<Map<Permission, PermissionStatus>> requestMultiplePermissions(
-    List<Permission> permissions,
-  ) async {
-    return await permissions.request();
-  }
 }

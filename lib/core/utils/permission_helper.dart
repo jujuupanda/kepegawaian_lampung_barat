@@ -1,42 +1,13 @@
 part of 'utils.dart';
 
-
+///TODO: remove print and change with what to do
 class PermissionHelper {
-  static void location() async {
-    final isGranted =
-        await PermissionHandlerService.requestPermission(Permission.location);
-    if (isGranted) {
-      print("akses lokasi diizinkan");
-    } else {
-      print("akses lokasi ditolak");
-    }
+  static Future<bool> location() async {
+    return await PermissionHandlerService.requestPermission(
+        Permission.location);
   }
 
-  static void camera() async {
-    final isGranted =
-        await PermissionHandlerService.requestPermission(Permission.camera);
-    if (isGranted) {
-      print("akses kamera diizinkan");
-    } else {
-      print("akses kamera ditolak");
-    }
-  }
-
-  static void handleMultiplePermissions() async {
-    var statuses = await PermissionHandlerService.requestMultiplePermissions([
-      Permission.camera,
-      Permission.microphone,
-      Permission.location,
-    ]);
-
-    statuses.forEach((permission, status) {
-      if (status.isGranted) {
-        print("$permission diberikan");
-      } else if (status.isPermanentlyDenied) {
-        print("$permission ditolak secara permanen. Arahkan ke pengaturan.");
-      } else {
-        print("$permission ditolak sementara");
-      }
-    });
+  static Future<bool> camera() async {
+    return await PermissionHandlerService.requestPermission(Permission.camera);
   }
 }

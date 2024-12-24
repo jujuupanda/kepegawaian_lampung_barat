@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'features/login/presentation/manager/auth_bloc.dart';
 import 'service_locator.dart';
 
 import 'app.dart';
 
-void main() {
+void main() async {
+  await dotenv.load(fileName: ".env");
+  serviceLocator();
+
   runApp(
     ScreenUtilInit(
       designSize: Size(360, 690),
@@ -14,7 +18,6 @@ void main() {
       builder: (context, child) => MyApp(),
     ),
   );
-  serviceLocator();
 }
 
 class MyApp extends StatelessWidget {
