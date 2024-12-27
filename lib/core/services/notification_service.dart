@@ -12,41 +12,48 @@ class NotificationService {
             android: AndroidInitializationSettings("@mipmap/ic_launcher"));
     _notificationsPlugin.initialize(
       initializationSettingsAndroid,
-      // to handle event when we receive notification
-      onDidReceiveNotificationResponse: (details) {
-        if (details.input != null) {}
-      },
+      onDidReceiveNotificationResponse: _handleNotificationClick,
+      onDidReceiveBackgroundNotificationResponse: _notificationTapBackground,
     );
   }
 
-  static Future<void> showNotification() async {
+  static Future<void> showNotification({
+    required String title,
+    required String content,
+    required String payload,
+  }) async {
     const AndroidNotificationDetails androidDetails =
-        AndroidNotificationDetails('channel_id', 'channel_name',
-            importance: Importance.high, priority: Priority.high);
+        AndroidNotificationDetails(
+      'channel_id',
+      'channel_name',
+      importance: Importance.high,
+      priority: Priority.high,
+    );
 
     const NotificationDetails notificationDetails =
         NotificationDetails(android: androidDetails);
 
     await _notificationsPlugin.show(
-      0, // ID notifikasi
-      'Judul Notifikasi',
-      'Isi dari notifikasi ini',
+      DateTime.now().millisecondsSinceEpoch ~/ 1000,
+      title,
+      content,
       notificationDetails,
+      payload: payload,
     );
   }
+}
 
-  static Future<void> scheduleNotification() async {
-    await _notificationsPlugin.zonedSchedule(
-      1, // ID notifikasi
-      'Notifikasi Terjadwal',
-      'Ini adalah isi notifikasi yang dijadwalkan',
-      tz.TZDateTime.now(tz.local).add(Duration(seconds: 5)), // Waktu
-      const NotificationDetails(
-        android: AndroidNotificationDetails('channel_id', 'channel_name'),
-      ),
-      uiLocalNotificationDateInterpretation:
-          UILocalNotificationDateInterpretation.absoluteTime,
-      androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
-    );
+/// Callback untuk notifikasi saat di foreground
+void _handleNotificationClick(NotificationResponse response) async {
+  if (response.payload != null) {
+    FileHelper.openFile(response.payload!);
+  }
+}
+
+/// Callback untuk notifikasi saat di background
+@pragma('vm:entry-point')
+void _notificationTapBackground(NotificationResponse response) {
+  if (response.payload != null) {
+    FileHelper.openFile(response.payload!);
   }
 }

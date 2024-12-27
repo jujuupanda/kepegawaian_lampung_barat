@@ -70,8 +70,8 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                         ElevatedButton(
                           onPressed: () async {
-                            final a = await SecureStorageHelper.read(
-                                key: "username");
+                            final a =
+                                await SecureStorageHelper.read(key: "username");
                             print(a);
                           },
                           child: Text("Read"),
@@ -85,8 +85,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                         ElevatedButton(
                           onPressed: () async {
-                            await SecureStorageHelper.delete(
-                                key: "password");
+                            await SecureStorageHelper.delete(key: "password");
                           },
                           child: Text("Delete"),
                         ),
@@ -140,21 +139,26 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   ElevatedButton(
                     onPressed: () async {
-                      await NotificationService.showNotification();
+                      await NotificationService.showNotification(
+                        title: "tes notif",
+                        content: "ini isi notif",
+                        payload: "none"
+                      );
                     },
                     child: Text("Notification"),
-                  ),
-                  ElevatedButton(
-                    onPressed: () async {
-                      await NotificationService.scheduleNotification();
-                    },
-                    child: Text("Notification Schedule"),
                   ),
                   ElevatedButton(
                     onPressed: () async {
                       await CameraHelper.openCamera();
                     },
                     child: Text("Open Camera"),
+                  ),
+                  ElevatedButton(
+                    onPressed: () async {
+                      await FileHelper.savePdfExternal("tests.pdf");
+                      // await ImportExportHelper.saveFilePdf("test.pdf");
+                    },
+                    child: Text("Create PDF"),
                   ),
                 ],
               ),

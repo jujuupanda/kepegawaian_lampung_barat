@@ -12,6 +12,10 @@ import 'package:package_info_plus/package_info_plus.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:safe_device/safe_device.dart';
 import 'package:shimmer/shimmer.dart';
+import 'package:syncfusion_flutter_pdf/pdf.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:open_file/open_file.dart';
 
 import '../error/failure.dart';
 import '../services/services.dart';
@@ -28,3 +32,5 @@ part 'custom_text_form_field.dart';
 part 'common_model.dart';
 part 'secure_storage_helper.dart';
 part 'camera_helper.dart';
+part 'pdf_helper.dart';
+part 'file_helper.dart';
