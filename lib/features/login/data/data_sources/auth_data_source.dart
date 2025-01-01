@@ -4,6 +4,7 @@ import 'package:dartz/dartz.dart';
 
 import '../../../../core/error/failure.dart';
 import '../../../../core/services/services.dart';
+import '../../../../core/utils/utils.dart';
 import '../../domain/use_cases/login_use_case.dart';
 import '../models/auth_model.dart';
 

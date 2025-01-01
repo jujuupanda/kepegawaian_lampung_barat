@@ -32,6 +32,11 @@ class InputFailure extends Failure {
 class CacheFailure extends Failure {
   const CacheFailure(super.error);
 }
+
 class JWTFailure extends Failure {
   const JWTFailure(super.error);
+}
+
+class LocationFailure extends Failure {
+  const LocationFailure(super.error);
 }

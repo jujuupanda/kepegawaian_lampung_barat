@@ -37,7 +37,7 @@ class CustomTextFormField extends StatefulWidget {
 }
 
 class _CustomTextFormFieldState extends State<CustomTextFormField> {
-  bool obscureTextValue = false;
+  bool obscureTextValue = true;
 
   @override
   Widget build(BuildContext context) {
@@ -102,7 +102,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
           });
         },
         icon: Icon(
-          obscureTextValue ? Icons.visibility : Icons.visibility_off,
+          obscureTextValue ? Icons.visibility_off : Icons.visibility,
         ),
       );
     }
