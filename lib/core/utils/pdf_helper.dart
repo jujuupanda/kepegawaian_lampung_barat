@@ -1,6 +1,7 @@
 part of 'utils.dart';
 
 class PdfHelper {
+  // create pdf file
   static Future<List<int>> createPDF() async {
     // 1. Buat objek PDF Document
     final PdfDocument document = PdfDocument();
@@ -25,6 +26,7 @@ class PdfHelper {
     return bytes;
   }
 
+  // Just read not open the pdf file
   static Future<void> readPDF(String filePath) async {
     final File file = File(filePath);
     final List<int> bytes = await file.readAsBytes();

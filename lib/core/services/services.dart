@@ -7,7 +7,6 @@ import 'package:dartz/dartz.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:http/http.dart' as http;
-import 'package:timezone/timezone.dart' as tz;
 import 'package:dart_jsonwebtoken/dart_jsonwebtoken.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:intl/intl.dart';

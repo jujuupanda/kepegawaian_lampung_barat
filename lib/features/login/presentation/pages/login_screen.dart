@@ -156,7 +156,6 @@ class _LoginScreenState extends State<LoginScreen> {
                   ElevatedButton(
                     onPressed: () async {
                       await FileHelper.savePdfExternal("tests.pdf");
-                      // await ImportExportHelper.saveFilePdf("test.pdf");
                     },
                     child: Text("Create PDF"),
                   ),
