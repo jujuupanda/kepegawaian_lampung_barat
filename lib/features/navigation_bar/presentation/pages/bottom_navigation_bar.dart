@@ -36,7 +36,7 @@ class _MyNavigationBarState extends State<MyNavigationBar> {
           Icons.newspaper,
           color: Colors.blueAccent,
         ),
-        label: "Berita",
+        label: "Layanan",
       ),
       const BottomNavigationBarItem(
         icon: Icon(Icons.corporate_fare_rounded),
