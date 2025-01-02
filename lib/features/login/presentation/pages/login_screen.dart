@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
+import 'package:go_router/go_router.dart';
 
+import '../../../../core/routes/route_app.dart';
 import '../../../../core/services/services.dart';
 import '../../../../core/utils/utils.dart';
 import '../../domain/use_cases/login_use_case.dart';
@@ -37,7 +39,12 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return BlocListener<AuthBloc, AuthState>(
-      listener: (context, state) {},
+      listener: (context, state) {
+        if(state is LoginSuccess){
+          GoRouter.of(context).goNamed(RouteName.homeScreen);
+        }
+        if(state is LoginFailed){}
+      },
       child: Stack(
         children: [
           Scaffold(

@@ -52,7 +52,7 @@ class ApiService {
       Future<http.Response> Function() request) async {
     try {
       final response = await request().timeout(const Duration(seconds: 10));
-      if (response.statusCode == 200) {
+      if (response.statusCode == 201) {
         return Right(jsonDecode(response.body));
       } else {
         return Left(

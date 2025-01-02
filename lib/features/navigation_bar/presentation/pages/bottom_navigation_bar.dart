@@ -47,12 +47,12 @@ class _MyNavigationBarState extends State<MyNavigationBar> {
         label: "Kehadiran",
       ),
       const BottomNavigationBarItem(
-        icon: Icon(Icons.search_rounded),
+        icon: Icon(Icons.history),
         activeIcon: Icon(
-          Icons.search_rounded,
+          Icons.history,
           color: Colors.blueAccent,
         ),
-        label: "Pesan",
+        label: "Riwayat",
       ),
       const BottomNavigationBarItem(
         icon: Icon(Icons.person_rounded),
